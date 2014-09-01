@@ -36,14 +36,8 @@
     UIApplication *application = [UIApplication sharedApplication];
     
     if (self.client) {
-        if ([self.client connected]) {
-            [self sendNotification:@"do reconnect..."];
-            [self.client disconnectWithCompletionHandler:^(NSUInteger code) {
-                self.client = nil;
-                [self reconnect];
-            }];
-        }
-        return;
+        [self sendNotification:@"do reconnect..."];
+        self.client = nil;
     }
     
     NSString *clientID = [[[UIDevice currentDevice]identifierForVendor]UUIDString];
